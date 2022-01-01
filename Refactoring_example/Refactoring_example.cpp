@@ -18,7 +18,7 @@ int main()
 		{movies[8], 4}, {movies[9], 5}, {movies[10], 6}, {movies[11], 7}
 	};
 	Customer customer = { "Customer" };
-	string expected = "Прокат Customer\n"
+	/*string expected = "Прокат Customer\n"
 		"\tMovie_1 2,000000\n"
 		"\tMovie_2 2,000000\n"
 		"\tMovie_3 3,500000\n"
@@ -26,6 +26,10 @@ int main()
 		"Сумма задолженности: 12,500000\n"
 		"Вы заработали 4 бонусных очков";
 	string result = customer.statement();
-	cout << expected << endl << endl << result;
+	cout << expected << endl << endl << result;*/
+	customer.addRental(rentals[2]);
+	customer.addRental(rentals[10]);
+	cout << customer.statement();
+
 }
 
