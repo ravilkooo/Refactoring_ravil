@@ -1,5 +1,9 @@
 #pragma once
 #include <string>
+#include "Price.h"
+#include "RegularPrice.h"
+#include "NewReleasePrice.h"
+#include "ChildrenPrice.h"
 using namespace std;
 
 
@@ -11,26 +15,24 @@ public:
 	static const int NEW_RELEASE = 1;
 private:
 	string _title;
-	int _priceCode;
+	Price* _price;
 
 public:
 	Movie() {
 		_title = "";
-		_priceCode = 0;
+		setPriceCode(REGULAR);
 	}
 
 	Movie(string title, int priceCode){
 		_title = title;
-		_priceCode = priceCode;
+		setPriceCode(priceCode);
 	}
 
 	int getPriceCode() {
-		return _priceCode;
+		return _price->getPriceCode();
 	}
 
-	void setPriceCode(int arg) {
-		_priceCode = arg;
-	}
+	void setPriceCode(int arg);
 
 	string getTitle() {
 		return _title;

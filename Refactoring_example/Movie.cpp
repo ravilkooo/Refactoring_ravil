@@ -1,36 +1,29 @@
 #include "Movie.h"
 
-double Movie::getCharge(int daysRented) {
-	double thisAmount = 0;
-	switch (getPriceCode()) {
+void Movie::setPriceCode(int arg) {
+	if (_price != NULL) {
+		delete _price;
+	}
+	switch (arg) {
 	case Movie::REGULAR:
-		thisAmount += 2;
-
-		if (daysRented > 2)
-			thisAmount += (daysRented - 2) * 1.5;
+		_price = new RegularPrice();
 		break;
 
 	case Movie::NEW_RELEASE:
-		thisAmount += daysRented * 3;
+		_price = new NewReleasePrice();
 		break;
 
 	case Movie::CHILDREN:
-		thisAmount += 1.5;
-		if (daysRented > 3)
-			thisAmount += (daysRented - 3) * 1.5;
+		_price = new ChildrenPrice();
 		break;
 	}
-	return thisAmount;
+}
+
+double Movie::getCharge(int daysRented) {
+	return _price->getCharge(daysRented);
 }
 
 int Movie::getBonus(int daysRented)
 {
-	// Начисление бонусных очков
-	int bonusPoints = 1;
-
-	// Бонус за двухдневный прокат новинки
-	if ((getPriceCode() == Movie::NEW_RELEASE) &&
-		daysRented > 1)
-		bonusPoints++;
-	return bonusPoints;
+	return _price->getBonus(daysRented);
 }
