@@ -6,13 +6,7 @@ string Customer::statement() {
 	string result = "Прокат " + getName() + "\n";
 
 	for (auto& each : _rentals) {
-		// Начисление бонусных очков
-		bonusPoints++;
-
-		// Бонус за двухдневный прокат новинки
-		if ((each.getMovie().getPriceCode() == Movie::NEW_RELEASE) &&
-			each.getDaysRented() > 1)
-			bonusPoints++;
+		bonusPoints += bonusFor(each);
 
 		// Вывод результатов для каждого проката
 		result += "\t" + each.getMovie().getTitle() + "\t" +
@@ -26,4 +20,16 @@ string Customer::statement() {
 	result += "Вы заработали " + to_string(bonusPoints) +
 		" бонусных очков";
 	return result;
+}
+
+int Customer::bonusFor(Rental& each)
+{
+	// Начисление бонусных очков
+	int bonusPoints = 1;
+
+	// Бонус за двухдневный прокат новинки
+	if ((each.getMovie().getPriceCode() == Movie::NEW_RELEASE) &&
+		each.getDaysRented() > 1)
+		bonusPoints++;
+	return bonusPoints;
 }
