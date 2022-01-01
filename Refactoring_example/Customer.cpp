@@ -6,8 +6,6 @@ string Customer::statement() {
 	string result = "Прокат " + getName() + "\n";
 
 	for (auto& each : _rentals) {
-		double thisAmount = each.getCharge();
-
 		// Начисление бонусных очков
 		bonusPoints++;
 
@@ -18,8 +16,8 @@ string Customer::statement() {
 
 		// Вывод результатов для каждого проката
 		result += "\t" + each.getMovie().getTitle() + "\t" +
-			to_string(thisAmount) + "\n";
-		totalAmount += thisAmount;
+			to_string(each.getCharge()) + "\n";
+		totalAmount += each.getCharge();
 	}
 
 	// Добавление колонтитула
