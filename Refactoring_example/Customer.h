@@ -21,6 +21,5 @@ public:
 		return _name;
 	}
 	string statement();
-	double amountFor(Rental & aRental);
 };
 
