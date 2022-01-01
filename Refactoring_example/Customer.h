@@ -25,4 +25,3 @@ public:
 	double getTotalCharge();
 	int getBonusPoints();
 };
-
